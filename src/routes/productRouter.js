@@ -22,7 +22,7 @@ function route(){
 
     productRouter.route('/insert')
     .post((req,res)=>{
-        res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+        // res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
         res.header("Access-Control-Allow-Origin", "*")
         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
         console.log(req.body);
@@ -45,6 +45,8 @@ function route(){
             console.log(req.body)
         productModel.findByIdAndUpdate(req.body._id,{$set:req.body},
           (err,result)=>{
+            res.header("Access-Control-Allow-Origin", "*")
+            res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             if(err)
             {
                 res.json({Status:"Error"});
@@ -58,7 +60,7 @@ function route(){
     productRouter.route('/')
         .post((req, res) => {
             console.log(req.body)
-            res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=None");
+            // res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=None");
             res.header("Access-Control-Allow-Origin", "*")
             res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             productModel.find({category:req.body.category},(err, result) => {
@@ -74,7 +76,7 @@ function route(){
 
         productRouter.route('/product')
         .post((req, res) => {
-            res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+            // res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
             res.header("Access-Control-Allow-Origin", "*")
             res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             console.log(req.body)
@@ -92,6 +94,8 @@ function route(){
         productRouter.route('/delete')
        
         .post((req,res)=>{
+            res.header("Access-Control-Allow-Origin", "*")
+            res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             console.log(req.body)
             productModel.findByIdAndDelete(req.body.id,(err,result)=>{
                 console.log(req.body.id)
@@ -110,6 +114,8 @@ function route(){
             console.log(req.body)
             // console.log
             productModel.find({email:req.body.email},(err, result) => {
+                res.header("Access-Control-Allow-Origin", "*")
+                res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
                 if (err) {
                     res.json({ Status: "Error" });
                 }

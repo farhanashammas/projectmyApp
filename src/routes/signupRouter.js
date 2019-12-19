@@ -7,7 +7,9 @@ var {signupModel}=require('../models/signupModel');
 function route(){
     signupRouter.route('/')
         .post((req,res)=>{
-            console.log(req.body);
+            // console.log(req.body);
+            res.header("Access-Control-Allow-Origin", "*")
+            res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             signupModel.findOne({ email: req.body.email}, (err, data) => {
                 if (err) {
                     res.json({Status:"Error"})
@@ -37,6 +39,8 @@ function route(){
 
         signupRouter.route('/profile')
         .post((req, res) => {
+            res.header("Access-Control-Allow-Origin", "*")
+            res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             signupModel.find({email:req.body.email},(err, result) => {
                 if (err) {
                     res.json({ Status: "Error" });
@@ -50,6 +54,8 @@ function route(){
 
         signupRouter.route('/users')
         .get((req, res) => {
+            res.header("Access-Control-Allow-Origin", "*")
+            res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             signupModel.find((err, result) => {
                 if (err) {
                     res.json({ Status: "Error" });
@@ -64,6 +70,8 @@ function route(){
         signupRouter.route('/delete')
        
         .post((req,res)=>{
+            res.header("Access-Control-Allow-Origin", "*")
+            res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             // console.log(req.body)
             signupModel.findOneAndDelete(req.body.email,(err,result)=>{
                 // console.log(req.body.email)

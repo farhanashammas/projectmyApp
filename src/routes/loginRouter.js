@@ -12,6 +12,8 @@ function route(key){
         // sess.email = req.body.email;
         console.log(req.body)
         signupModel.findOne({ email: req.body.email, password: req.body.password }, (err, data) => {
+            res.header("Access-Control-Allow-Origin", "*")
+            res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
             if (err) {
                 res.json({ Status: "Error" });
             }
