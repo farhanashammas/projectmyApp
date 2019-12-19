@@ -10,6 +10,8 @@ function route(){
             console.log(req.body);
             signupModel.findOne({ email: req.body.email}, (err, data) => {
                 if (err) {
+                    res.json({Status:"Error"})
+                }else if (data){
                     res.json({Status:"User exists"})
                 }
                 else if (!data) {
