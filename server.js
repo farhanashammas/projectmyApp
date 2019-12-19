@@ -11,9 +11,7 @@ const loginRouter=require('./src/routes/loginRouter')()
 const productRouter=require('./src/routes/productRouter')()
 // const {productModel}=require('./src/models/productsModel')
 
-app.use('/signup',signupRouter);
-app.use('/login',loginRouter);
-app.use('/products',productRouter)
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -21,6 +19,9 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 app.use(express.static('dist'));
+app.use('/signup',signupRouter);
+app.use('/login',loginRouter);
+app.use('/products',productRouter)
 
 const uri="mongodb+srv://farhana:farhana@cluster0-o93hy.mongodb.net/test?retryWrites=true&w=majority"
 
@@ -48,7 +49,8 @@ app.use(express.static(__dirname + '/public'));
 
 // set the home page route
 app.get('/', function(req, res) {
-
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     // ejs render automatically looks in the views folder
     res.render('index');
 });
