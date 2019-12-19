@@ -15,6 +15,7 @@ app.use(express.static('dist'));
 const signupRouter=require('./src/routes/signupRouter')()
 const loginRouter=require('./src/routes/loginRouter')()
 const productRouter=require('./src/routes/productRouter')()
+// const {productModel}=require('./src/models/productsModel')
 
 app.use('/signup',signupRouter);
 app.use('/login',loginRouter);
@@ -50,6 +51,21 @@ app.set('view engine', 'ejs');
 
 // make express look in the public directory for assets (css/js/img)
 app.use(express.static(__dirname + '/public'));
+
+// app.get('/products',function(req,res){
+//         // console.log(req.body)
+//         res.header("Access-Control-Allow-Origin", "*")
+//         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+//         productModel.find((err, result) => {
+//             if (err) {
+//                 res.json({ Status: "Error" });
+//             }
+//             else {
+//                 // console.log(result)
+//                 res.json({product:result});
+//             }
+//         }); 
+//     });
 
 // set the home page route
 app.get('/', function(req, res) {
